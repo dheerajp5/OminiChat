@@ -23,8 +23,8 @@ function CodeBlock(props) {
 
 
     return (
-        <div className="w-full  bg-[#282c34d9] my-3  rounded-lg">
-            <div className=" text-white text-bold  w-full flex justify-between px-1 py-2">
+        <div className="w-full  bg-[#282c34d9] my-4 rounded-xl">
+            <div className=" text-white text-bold  w-full flex justify-between px-4 py-2">
                 <span>{laguage}</span>
                 <TooltipProvider>
                     <Tooltip>
@@ -39,7 +39,7 @@ function CodeBlock(props) {
 
             </div>
             <div className="overflow-x-auto">
-                <SyntaxHighlighter language={laguage} style={atomOneDark} customStyle={{ paddingLeft: "10px" }} >
+                <SyntaxHighlighter language={laguage} style={atomOneDark} customStyle={{ paddingLeft: "30px", paddingTop: "10px", paddingBottom: "10px" }} >
                     {props.children}
                 </SyntaxHighlighter>
 

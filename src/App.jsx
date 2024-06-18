@@ -1,37 +1,32 @@
 
-
-import { useState } from "react"
-
 import { createBrowserRouter } from "react-router-dom";
 import Home from "./pages/home";
 import { RouterProvider } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+
 import DefaultComponent from "./components/my/Default";
-import { userState } from "./context/user";
-import  Login  from "./pages/login";
+
+import Login from "./pages/login";
 import Signup from "./pages/signup";
-import UserProvider from './context/user.jsx'
+
+import Conversation from "./components/my/conversation";
+import ConversatioProvider from "./context/conversation";
+import Faq from "./components/my/faq";
+
 
 const router = createBrowserRouter([
   {
-    path : "/",
-    element : <Home />,
-    children : [
-      {
-        path : "/",
-        element : <DefaultComponent />
-      }
-    ]
+    path: "/",
+    element: <Home />,
+    
   },
   {
-    path : "/login",
-    element :  <Login />
+    path: "/login",
+    element: <Login />
   },
   {
-    path : "/signup",
-    element :<Signup />
-  }
+    path: "/signup",
+    element: <Signup />
+  },
 ])
 
 

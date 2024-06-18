@@ -4,7 +4,7 @@ import Send from "./send";
 import SidebarDesktop from "./sidebar-desktop";
 import Mark from "./mark";
 import Message from "@/utills/Message";
-import UserPrompt from "./userPrompt";
+
 import DefaultComponent from "./Default";
 import UserAndAssistent from "./userAndAssistant";
 

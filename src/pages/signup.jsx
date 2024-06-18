@@ -1,14 +1,23 @@
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form } from "react-router-dom";
 
 import axios from "axios";
-
+import {userState} from "../context/user"
 import CustomAlert from "@/components/my/customAlert";
+import { useNavigate } from "react-router-dom";
 
 
 
 function Signup(props) {
+
+    const { isLoggedIn} = userState();
+    const navigate = useNavigate()
+   
+    useEffect(() => {
+        if(isLoggedIn)  {navigate("/")};
+    },[isLoggedIn])
+
     const inputStyle = " w-full text-base leading[1.1] p-2.5 line- appearance-none bg-white border border-[#c2c8d0] rounded-sm my-2";
 
     const [name, setName] = useState("");
@@ -50,11 +59,12 @@ function Signup(props) {
                     setTitle("Success");
                     setMessage("Form Submited Successfully")
                     setMessageStyle(successStyle);
-                   
+                    navigate("/login");
                 }
                 
                 
                 console.log(response)
+                
 
             })
             .catch(err => {

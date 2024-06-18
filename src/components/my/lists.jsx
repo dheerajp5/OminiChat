@@ -13,7 +13,7 @@ export default function Ul(prop) {
         items = props?.children?.split(" - ");
     else items = liItems;
     return (
-        <ul>
+        <ul className="list-disc">
             {
                 items?.map(ListItem)
             }
@@ -41,7 +41,7 @@ export function Ol(prop) {
 
 
     return (
-        <ol start="1">
+        <ol className="list-decimal">
             {
                 items?.map(ListItem)
             }

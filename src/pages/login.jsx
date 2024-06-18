@@ -6,14 +6,18 @@ import axios from "axios";
 
 import CustomAlert from "@/components/my/customAlert";
 import { userState } from "@/context/user";
-import { redirect} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
+import { useEffect } from "react";
 
 
 
 function Login(props) {
     const {setUser, setisLoggedIn, isLoggedIn} = userState();
+    const navigate = useNavigate()
 
-    if(isLoggedIn) redirect("/");
+    useEffect(() => {
+        if(isLoggedIn)  {navigate("/")};
+    },[isLoggedIn])
 
     const inputStyle = " w-full text-base leading[1.1] p-2.5 line- appearance-none bg-white border border-[#c2c8d0] rounded-sm my-2";
     const [phone, setPhone] = useState("");
@@ -59,7 +63,8 @@ function Login(props) {
                     return;
                 }
                 if (response.status == 200) {
-                   localStorage.setItem("userinfo", response.data.toString())
+                    JSON.stringify(response.data);
+                   localStorage.setItem("userinfo", JSON.stringify(response.data))
                    setUser(response.data);
                    setisLoggedIn(true);
                   
