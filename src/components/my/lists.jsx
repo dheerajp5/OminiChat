@@ -22,7 +22,8 @@ export default function Ul(prop) {
 }
 
 function ListItem(value, index) {
-    return <li key={value + index} className="text-lg font-medium ">{value}</li>
+    const unique = Math.floor(Math.random() *1000)
+    return <li key={value + index + "-" + unique} className="text-lg font-medium ">{value}</li>
 }
 
 export function Ol(prop) {

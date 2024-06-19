@@ -1,29 +1,32 @@
 export default class Message { 
-    // constructor(id, message, role = "user" | "assistant") {
-    //     this.message = message;
-    //     this.id = id;
-    //     this.role = role;
+
+
+    // constructor(prompt,  aiResponse) {
+    //     this.prompt = prompt;
+    //     this.aiResponse = aiResponse;
+    //     this.id = "";
     // }
 
-    // constructor(message) {
-    //     this.message;
-    // }
-
-    constructor(message,  role = "user" | "assistant") {
-        this.message = message;
-        this.role = role;
+    constructor(prompt,  aiResponse, id) {
+        this.prompt = prompt;
+        this.aiResponse = aiResponse;
+        this.id = id;
     }
 
     getMessage() {
-        return this.message
+        return this
     }
 
     getID() {
         return this.id;
     }
 
-    getRole () {
-        return this.role;
+    getPrompt () {
+        return this.prompt;
+    }
+
+    getAiResponse () {
+        return this.aiResponse;
     }
 
 

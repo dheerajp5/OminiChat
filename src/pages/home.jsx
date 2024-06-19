@@ -12,41 +12,37 @@ import axios from "axios";
 
 function Home() {
     const [sidebar, setSidebar] = useState(true);
-
+    const [aiResponse, setAiResponse] = useState("");
     
 
     const {
         prompt,
         conversation,
-        aiResponse,
         setPrompt,
         setConversation,
-        setAiResponse
+        seassonId,
+        setSeassonId
     } = conersationState();
 
  async function onSend(){
-    const userId = localStorage.getItem("userinfo");
-    console.log("userinfo ", userId);
-    axios.post(`http://localhost:8080/ai`, {prompt, userId})
-    .then( async (res) =>{ console.log(res); await handleSSE() })
+    const userId = JSON.parse(localStorage.getItem("userinfo")).id;
+    axios.post(`http://localhost:8080/ai`, {prompt, userId, seassonId})
+    .then( async (res) =>{ console.log("got response ",res); setSeassonId(res.data);   await handleSSE() })
     .catch(err => console.log(err) );
-  
-
-
  }
 
 
     function handleSSE() {
 
-        console.log("SSE Function Executed");
+       
 
         if (prompt === "" || prompt.length == 0) return;
        
-        const userPrompt = new Message(prompt, "user");
-        
-        const assistentResponse = new Message(aiResponse, "assistant")
-        aiResponse !== "" ? setConversation(pre => [...pre,assistentResponse, userPrompt ]) : setConversation(pre => [...pre, userPrompt]);
+        const message = new Message(prompt,aiResponse);
         setAiResponse("");
+       
+        setConversation(pre => [...pre, message ]);
+        
 
         console.log("requesting")
         const eventSource = new EventSource(`http://localhost:8080/sse`);
@@ -59,7 +55,7 @@ function Home() {
             const data = await JSON.parse(event.data);
             const content = data.result.output.content;
              setAiResponse(pre => pre.concat(content));
-            // console.log("response Content ",content, " aiResponse ", aiResponse);
+           
 
             if (data.result.metadata.finishReason === "unknown") {
                 eventSource.close();
@@ -68,6 +64,7 @@ function Home() {
 
             }
         }
+       
     }
 
 

@@ -51,7 +51,7 @@ export default function Faq() {
 
 
     return (
-        <div className="w-full h-full flex items-center">
+        <div className="w-screen h-screen overflow-hidden px-4 py-3">
         <Accordion type="single" collapsible className="w-full">
             {
                 faq.map(accordionItem)
@@ -65,12 +65,16 @@ export default function Faq() {
 
 function accordionItem(item, index) {
     return (
-        <AccordionItem  key={`faq-${index}`} value={`item-${index}`} className="bg-white my-1">
+        
+
+      
+        <AccordionItem  key={`faq-${index}`} value={`item-${index}`} className="bg-white my-1 px-3">
             <AccordionTrigger  className="text-2xl">{`${index +1}. `}{item.title}</AccordionTrigger>
             <AccordionContent className="text-lg px-8">
                <span className="font-bold">Answer</span> {item.content}
             </AccordionContent>
         </AccordionItem>
+        
     )
 }
 

@@ -4,7 +4,7 @@ function H1 ({children}) {
 }
 
 // function P
-export function P({children}) { return <div className=" w-full"><span className="text-md my-3 font-medium ">{children}</span> </div> }
+export function P({children}) { return <div className=" w-full my-3"><span className="text-md my-3 font-medium ">{children}</span> </div> }
 
 export default H1;
 // export P

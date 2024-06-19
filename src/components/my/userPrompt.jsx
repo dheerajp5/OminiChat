@@ -1,8 +1,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 
-function UserPrompt({ text, id }) {
-    return <div key={id} className=" flex justify-end items-center my-4 ">
+function UserPrompt({ text }) {
+    return <div  className=" flex justify-end items-center my-4 ">
         {/* <div className="relative flex justify-center items-center h-9 w-9 shrink-0 overflow-hidden rounded-full bg-secondary">
             <div className="font-bold">DV</div>
         </div> */}

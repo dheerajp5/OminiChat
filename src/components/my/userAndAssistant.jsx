@@ -3,10 +3,16 @@ import  UserPrompt  from "./userPrompt";
 
 function UserAndAssistent({item}) {
     let id = Math.floor(Math.random() * 100);
+    if(item.id !== null && item.id !== "") {
+        id = item.id;
+    }
 
-    if(item.role === "user")   return <UserPrompt text={item.message} id={`user-${id}`} />
-
-    return <Mark text={item.message} id={`assistant-${id}`} />
+    return (
+        <div key ={id + "-prompt"}>
+            {item.prompt !== "" && <UserPrompt text={item.prompt}  />}
+            {item.aiResponse !== "" && <Mark text={item.aiResponse}  /> }
+        </div>
+    ) 
 }
 
 export default UserAndAssistent;
