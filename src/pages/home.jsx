@@ -27,7 +27,7 @@ function Home() {
  async function onSend(){
     const userId = JSON.parse(localStorage.getItem("userinfo")).id;
     axios.post(`http://localhost:8080/ai`, {prompt, userId, seassonId})
-    .then( async (res) =>{ console.log("got response ",res); setSeassonId(res.data);   await handleSSE() })
+    .then( async (res) =>{ console.log("got response ",res); setSeassonId(res.data);    handleSSE() })
     .catch(err => console.log(err) );
  }
 
@@ -74,14 +74,14 @@ function Home() {
     return (
 
 
-        <div className=" w-screen h-screen flex bg-white">
+        <div className=" w-screen h-screen flex ">
             <div className="w-full h-full ">
                 <div className="w-full flex h-full">
                     {sidebar && <div className="relative h-full w-[270px] " > <SidebarDesktop /></div>}
                     <div className=" flex-1 w-full  flex flex-col mx-4">
                         <Navbar toggleSideBar={setSidebar} />
 
-                        <div className="w-full h-full flex  gap-4 flex-col items-center  overflow-y-auto bg-[#F5F5F5] rounded-xl">
+                        <div className="w-full h-full flex  gap-4 flex-col items-center  overflow-y-auto  rounded-xl">
 
                             {prompt === "" && <DefaultComponent /> }
 
@@ -92,7 +92,7 @@ function Home() {
 
                             {
 
-                            aiResponse !== "" && <Mark text={aiResponse} id={Math.floor(Math.random() * 100)} />
+                            aiResponse !== "" && <div className="text-red-500"><Mark text={aiResponse} id={Math.floor(Math.random() * 100)} /></div>
                             
                             }
                             </div>

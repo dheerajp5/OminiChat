@@ -66,7 +66,7 @@ export default function Send({setPrompt, onSend}) {
 
 
     return (
-        <div className="w-full py-3 bg-white rounded-sm">
+        <div className="w-full py-3 bg-primary-foreground rounded-sm">
             <div className="w-full ">
                 <div className="w-full flex justify-center">
                     <div className="w-full flex justify-center gap-2 items-center">
