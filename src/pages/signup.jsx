@@ -18,7 +18,7 @@ function Signup(props) {
         if(isLoggedIn)  {navigate("/")};
     },[isLoggedIn])
 
-    const inputStyle = " w-full text-base leading[1.1] p-2.5 line- appearance-none bg-white border border-[#c2c8d0] rounded-sm my-2";
+    const inputStyle = " w-full text-base leading[1.1] p-2.5 line- appearance-none border border-[#c2c8d0] rounded-sm my-2 bg-secondary";
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");

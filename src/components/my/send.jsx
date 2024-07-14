@@ -66,13 +66,13 @@ export default function Send({setPrompt, onSend}) {
 
 
     return (
-        <div className="w-full py-3 bg-primary-foreground rounded-sm">
+        <div className="w-full py-3 bg-primary-foreground rounded-sm mt-4">
             <div className="w-full ">
                 <div className="w-full flex justify-center">
                     <div className="w-full flex justify-center gap-2 items-center">
-                        <div className="p-1 rounded-full border-2 border-gray-200 w-full lg:w-fit flex items-center">
-                            <input type="text" onChange={(e) => setPrompt(e.target.value)} className="lg:w-[500px] w-[95%] bg-transparent border border-black rounded-full pl-3 py-1 border-none outline-none focus:outline-none " placeholder="Tell me What do you want?" />
-                            <Button className="hover:bg-gray-200 rounded-full" onClick={() => onSend()} variant="secondary"><SendHorizonal /></Button>
+                        <div className="p-1 rounded-full border-4 border-secondary w-full lg:w-fit flex items-center">
+                            <input type="text" onChange={(e) => setPrompt(e.target.value)} className="lg:w-[500px] w-[95%] bg-transparent  rounded-full pl-3 py-1 border-none outline-none focus:outline-none " placeholder="Tell me What do you want?" />
+                            <Button className="hover:bg-secondary/60 rounded-full" onClick={() => onSend()} variant="secondary"><SendHorizonal /></Button>
                         </div>
                     </div>
                 </div>

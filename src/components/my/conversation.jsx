@@ -7,13 +7,6 @@ function Conversation() {
 
     const { prompt, conversation, aiResponse, setPrompt, setConversation, setAiResponse } = conersationState();
 
-    console.log("prompt ",prompt);
-  
-
-    console.log(" Inside rendering ",conersationState())
-
-
-
     return (
         <div className="w-full h-full p-2">
 

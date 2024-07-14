@@ -7,10 +7,10 @@ export default class Message {
     //     this.id = "";
     // }
 
-    constructor(prompt,  aiResponse, id) {
+    constructor(prompt,  aiResponse) {
         this.prompt = prompt;
         this.aiResponse = aiResponse;
-        this.id = id;
+        this.id = null;
     }
 
     getMessage() {

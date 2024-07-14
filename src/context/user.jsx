@@ -7,13 +7,13 @@ const userContext =  createContext();
 
 
 const UserProvider = ({children}) => {
- const [user, setUser] =  useState("user is present");
+ const [user, setUser] =  useState("");
  const [isLoggedIn, setisLoggedIn] = useState(false);
  const [userId, setUserId] = useState("");
 
 
  useEffect(() => {
-    const u = JSON.parse(localStorage.getItem("userinfo"));
+    const u = JSON.parse(localStorage.getItem("userinfo"))?.data;
 
 
     if(u) {

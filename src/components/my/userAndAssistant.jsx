@@ -8,7 +8,7 @@ function UserAndAssistent({item}) {
     }
 
     return (
-        <div key ={id + "-prompt"}>
+        <div id={id + "-prompt"}>
             {item.prompt !== "" && <UserPrompt text={item.prompt}  />}
             {item.aiResponse !== "" && <Mark text={item.aiResponse}  /> }
         </div>

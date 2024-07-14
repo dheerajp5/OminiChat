@@ -8,7 +8,7 @@ import {
 
 function CustomAlert({body, title, style}) {
     return (
-        <div>
+        <div className="m-2">
             <Alert className = {style}>
 
                 <AlertTitle>{title}</AlertTitle>

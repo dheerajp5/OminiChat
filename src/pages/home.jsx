@@ -9,11 +9,13 @@ import Message from "@/utills/Message";
 import UserAndAssistent from "../components/my/userAndAssistant";
 import Mark from "@/components/my/mark";
 import axios from "axios";
+import UserPrompt from "@/components/my/userPrompt";
 
 function Home() {
     const [sidebar, setSidebar] = useState(true);
     const [aiResponse, setAiResponse] = useState("");
-    
+    let c = "";
+   
 
     const {
         prompt,
@@ -25,7 +27,8 @@ function Home() {
     } = conersationState();
 
  async function onSend(){
-    const userId = JSON.parse(localStorage.getItem("userinfo")).id;
+    const userId = JSON.parse(localStorage.getItem("userinfo"))?.data?.id;
+    console.log("UserId", userId);
     axios.post(`http://localhost:8080/ai`, {prompt, userId, seassonId})
     .then( async (res) =>{ console.log("got response ",res); setSeassonId(res.data);    handleSSE() })
     .catch(err => console.log(err) );
@@ -34,16 +37,8 @@ function Home() {
 
     function handleSSE() {
 
-       
-
         if (prompt === "" || prompt.length == 0) return;
-       
-        const message = new Message(prompt,aiResponse);
-        setAiResponse("");
-       
-        setConversation(pre => [...pre, message ]);
         
-
         console.log("requesting")
         const eventSource = new EventSource(`http://localhost:8080/sse`);
        
@@ -54,12 +49,20 @@ function Home() {
         eventSource.onmessage = async event => {
             const data = await JSON.parse(event.data);
             const content = data.result.output.content;
-             setAiResponse(pre => pre.concat(content));
+            setAiResponse(pre => pre.concat(content));
+            c = c.concat(content);
            
 
             if (data.result.metadata.finishReason === "unknown") {
+                const message = new Message(prompt, aiResponse);
+                console.log("end ai response ", aiResponse)
+                setConversation(pre => [...pre, {prompt,aiResponse: c} ]);
+                setPrompt("");
+                setAiResponse("");
+                c = "";
+               
                 eventSource.close();
-                setAiResponse(pre => pre.concat(" \n"));
+               
                 console.log("end")
 
             }
@@ -77,25 +80,37 @@ function Home() {
         <div className=" w-screen h-screen flex ">
             <div className="w-full h-full ">
                 <div className="w-full flex h-full">
-                    {sidebar && <div className="relative h-full w-[270px] " > <SidebarDesktop /></div>}
-                    <div className=" flex-1 w-full  flex flex-col mx-4">
+                    {sidebar && <div className="relative h-full w-[230px] " > <SidebarDesktop /></div>}
+                    <div className=" flex-1 w-full  flex flex-col ">
                         <Navbar toggleSideBar={setSidebar} />
 
-                        <div className="w-full h-full flex  gap-4 flex-col items-center  overflow-y-auto  rounded-xl">
+                        <div className="w-full lg:w-[97%] h-full flex  gap-4 flex-col items-center overflow-y-auto  rounded-xl ml-2">
 
-                            {prompt === "" && <DefaultComponent /> }
+                            {prompt === "" && conversation.length <= 0 && <DefaultComponent /> }
 
-                            <div className="w-full h-full p-2 mb-8">
+                           
                             {
-                                conversation.map(onConversation)
-                             }
-
-                            {
-
-                            aiResponse !== "" && <div className="text-red-500"><Mark text={aiResponse} id={Math.floor(Math.random() * 100)} /></div>
-                            
+                               (prompt !== "" || conversation.length > 0) && <div className="w-full h-full">
+                                {
+                                    conversation.map(onConversation)
+                                    
+                                 }
+                                 {console.log(conversation)}
+    
+                                {
+    
+                                prompt !== "" && <UserPrompt text={prompt} />
+    
+                                }
+    
+                                {
+    
+                                aiResponse !== "" && <Mark text={aiResponse} id={Math.floor(Math.random() * 100)} />
+                                
+                                }
+                                </div>
                             }
-                            </div>
+                           
                             
 
                            

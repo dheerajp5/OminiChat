@@ -94,7 +94,7 @@ return (
             <h1 className="text-4xl"    >Welcome Back</h1>
             <div className="w-96 mt-4">
                 <Form className="">
-                   <input onChange={(e) => setPhone(e.target.value)} type="tel" placeholder=" Phone NUmber" className=" w-full text-base leading[1.1] p-2.5 line- appearance-none bg-white border border-[#c2c8d0] rounded-sm" />
+                   <input onChange={(e) => setPhone(e.target.value)} type="tel" placeholder=" Phone NUmber" className=" w-full text-base leading[1.1] p-2.5 line- appearance-none bg-secondary border border-[#c2c8d0] rounded-sm" />
                     <button onClick={onSubmitHandler} className=" rounded-sm w-full p-2.5 text-white bg-[#10a37f] flex justify-center align-center my-5">Continue</button>
                 </Form>
             </div>

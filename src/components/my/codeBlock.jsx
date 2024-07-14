@@ -29,7 +29,7 @@ function CodeBlock(props) {
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <span className="cursor-pointer" onClick={copy} >Copy Code</span>
+                            <span className="cursor-pointer hover:bg-primary-foreground  rounded-lg p-2" onClick={copy} >Copy</span>
                         </TooltipTrigger>
                         <TooltipContent>
                             <p>Copied</p>
